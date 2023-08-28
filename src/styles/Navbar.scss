@@ -1,0 +1,18 @@
+.navbar {
+    height: 70px;
+    background-color: var(--navbar-bg);
+    color: var(--navbar-color);
+    font-family: 'Lexend Tera';
+
+    &-container {
+        display: flex;
+        align-items: center;
+        
+        a {
+            color: var(--navbar-color);
+            text-decoration: none;
+            padding: 20px;
+        }
+    }
+
+}
