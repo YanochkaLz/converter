@@ -12,6 +12,7 @@ const Coder = () => {
       return null;
     }
   }, [amountField]);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     if (fieldsRef.current) {
@@ -30,6 +31,7 @@ const Coder = () => {
       </div>
       <div className="coder-fields" ref={fieldsRef}>
         <CoderField
+          setResult={setResult}
           amountField={amountField}
           arrayOfNumbers={arrayOfNumbers}
           style={{
@@ -39,6 +41,7 @@ const Coder = () => {
           }}
         />
         <CoderField
+          output={result}
           arrayOfNumbers={arrayOfNumbers}
           readOnly={true}
           style={{
