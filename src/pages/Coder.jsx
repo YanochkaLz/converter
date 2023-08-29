@@ -13,7 +13,6 @@ const Coder = () => {
     }
   }, [amountField]);
   const [result, setResult] = useState(null);
-  console.log(result)
 
   useEffect(() => {
     if (fieldsRef.current) {
@@ -26,8 +25,7 @@ const Coder = () => {
       <div className="coder-menu">
         <div><span>.class </span> - represents class of element</div>
         <div><span>{">"}</span> - level of investment</div>
-        <div><span>^</span> - one level higher</div>
-        <div><span>element</span>- represents name of HTML element</div>
+        <div><span>element</span> - represents name of HTML element</div>
         <div><span>#id</span> - represents element identifier</div>
       </div>
       <div className="coder-fields" ref={fieldsRef}>

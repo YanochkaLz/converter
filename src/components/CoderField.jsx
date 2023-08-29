@@ -17,7 +17,7 @@ const CoderField = ({
     setFocusedRow(linesBeforeCursor.length);
 
     let s = event.target.value;
-    if (s.includes(">") || s.includes("^")) {
+    if (s.includes(">")) {
       let fLayout;
       let currentTag;
       let isError = false;
@@ -25,6 +25,11 @@ const CoderField = ({
         if (elem) {
           if (!fLayout) {
             fLayout = handleFormLayout(elem);
+            if(fLayout === 'error') {
+              setResult(fLayout);
+              isError = true;
+              return;
+            }
             currentTag = fLayout;
           } else {
             let temp = handleFormLayout(elem);
