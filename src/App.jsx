@@ -4,14 +4,14 @@ import RoutesC from "./components/RoutesC";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <main>
         <div className="main">
           <RoutesC />
         </div>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
