@@ -15,11 +15,39 @@ const CoderField = ({
       .substr(0, cursorPosition)
       .split("\n");
     setFocusedRow(linesBeforeCursor.length);
-    handleFormLayout(event);
+
+    let s = event.target.value;
+    if (s.includes(">") || s.includes("^")) {
+      let fLayout;
+      let currentTag;
+      let isError = false;
+      s.split(">").forEach((elem) => {
+        if (elem) {
+          if (!fLayout) {
+            fLayout = handleFormLayout(elem);
+            currentTag = fLayout;
+          } else {
+            let temp = handleFormLayout(elem);
+            if(temp === 'error') {
+              setResult(temp);
+              isError = true;
+              return;
+            }
+            currentTag.append(temp);
+            currentTag = temp;
+          }
+        }
+      });
+      if(!isError) {
+        setResult(fLayout);
+      }
+    } else {
+      const fullLayout = handleFormLayout(s);
+      setResult(fullLayout);
+    }
   };
 
-  const handleFormLayout = (event) => {
-    let str = event.target.value;
+  const handleFormLayout = (str) => {
     let curr = {};
     let currentProp = null;
     let req = /[A-Z]|[a-z]/;
@@ -29,10 +57,10 @@ const CoderField = ({
       for (let char of str) {
         if (char === ".") {
           currentProp = "class";
-          if(!curr[currentProp]) {
-            curr[currentProp] = []
+          if (!curr[currentProp]) {
+            curr[currentProp] = [];
           }
-          curr[currentProp].push('');
+          curr[currentProp].push("");
         } else if (char === "#") {
           currentProp = "id";
           curr[currentProp] = "";
@@ -40,20 +68,19 @@ const CoderField = ({
           currentProp = "tag";
           curr[currentProp] = char;
         } else if (char.match(req2)) {
-          if(currentProp === 'class') {
-            curr[currentProp][curr[currentProp].length-1] += char;
+          if (currentProp === "class") {
+            curr[currentProp][curr[currentProp].length - 1] += char;
           } else {
             curr[currentProp] += char;
           }
         } else {
-          setResult("error");
-          return;
+          return "error";
         }
       }
       let layout = document.createElement(curr.tag || "div");
       if (curr.class?.length) {
-        curr.class.forEach(c => {
-          if(c) {
+        curr.class.forEach((c) => {
+          if (c) {
             layout.classList.add(c);
           }
         });
@@ -61,9 +88,9 @@ const CoderField = ({
       if (curr.id) {
         layout.id = curr.id;
       }
-      setResult(layout);
+      return layout;
     } else {
-      setResult('')
+      return "";
     }
   };
 
@@ -75,19 +102,22 @@ const CoderField = ({
     setFocusedRow(linesBeforeCursor.length);
   };
 
+  const handleError = () => {
+    document.querySelector(".output-section").textContent = "Incorrect input!";
+    document.querySelector(".output-section").style.color = "red";
+  };
+
   useEffect(() => {
     if (output && readOnly) {
       if (output === "error") {
-        document.querySelector(".output-section").textContent =
-          "Incorrect input!";
-        document.querySelector(".output-section").style.color = "red";
+        handleError();
       } else {
         document.querySelector(".output-section").style.color = "black";
         document.querySelector(".output-section").textContent =
           output.outerHTML;
       }
     } else {
-      document.querySelector(".output-section").textContent = ''
+      document.querySelector(".output-section").textContent = "";
     }
   }, [output]);
 

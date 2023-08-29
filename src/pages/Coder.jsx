@@ -13,6 +13,7 @@ const Coder = () => {
     }
   }, [amountField]);
   const [result, setResult] = useState(null);
+  console.log(result)
 
   useEffect(() => {
     if (fieldsRef.current) {
