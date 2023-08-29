@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import RoutesC from "./components/RoutesC";
 
