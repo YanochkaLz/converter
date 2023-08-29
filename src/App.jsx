@@ -5,8 +5,12 @@ import RoutesC from "./components/RoutesC";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
-      <RoutesC />
+      <Navbar />
+      <main>
+        <div className="main">
+          <RoutesC />
+        </div>
+      </main>
     </BrowserRouter>
   );
 }

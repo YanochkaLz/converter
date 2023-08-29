@@ -1,0 +1,76 @@
+.coder {
+    width: 95%;
+    margin: 0 auto;
+
+    &-menu {
+        background-color: var(--coder-menu-bg);
+        font-family: "Lexend Tera";
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .coder-fields {
+        display: flex;
+        font-family: "Lexend Tera";
+
+        .coder-field {
+            height: 80vh;
+            flex-grow: 1;
+            resize: none;
+            position: relative;
+
+            *::selection {
+                background-color: gray;
+            }
+
+            .numbers {
+                position: absolute;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                padding-top: 10px;
+                margin-left: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 25px;
+                line-height: 30px;
+                padding-right: 5px;
+                z-index: 3;
+            }
+
+            textarea {
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                font-size: 25px;
+                line-height: 30px;
+                border: none !important;
+                outline: none !important;
+                padding: 10px;
+                padding-left: 55px;
+                resize: none;
+                position: absolute;
+                z-index: 2;
+                background-color: transparent;
+            }
+
+            .selectedGrey {
+                position: absolute;
+                width: calc(100% - 50px);
+                height: 30px;
+                background-color: rgba(128, 128, 128, 0.162);
+                right: 0;
+                z-index: 1;
+            }
+        }
+    }
+}

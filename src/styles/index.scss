@@ -4,4 +4,20 @@
 html {
     --navbar-bg: #2A393B;
     --navbar-color: #D9D9D9;
+    --main-bg: #B6CACA;
+    --coder-menu-bg: #ABADB0;
+    --coder-bg1: #2C3646;
+    --coder-bg2: #D9D9D9;
+}
+body {
+    background-color: var(--main-bg);
+}
+
+.main {
+    height: calc(100vh - 90px);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }

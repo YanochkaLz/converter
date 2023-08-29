@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <nav className="navbar-container">
-        <img src='../assets/logo.svg' alt="Logo" />
+        <img className="navbar-logo" src='./favicon.png' alt="Logo" />
         <NavLink to='/about'>How to use</NavLink>
         <NavLink to='/'>Converter</NavLink>
       </nav>
